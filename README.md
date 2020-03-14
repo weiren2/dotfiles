@@ -1,6 +1,6 @@
 # dotfiles
 
-Some ~shitty~ configuration files. Not guaranteed to work 😬
+Some ~shitty~ configuration files. Not guaranteed to work 😬.
 
 ```sh
 cd $HOME # Or anywhere you like
