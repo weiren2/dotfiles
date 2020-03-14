@@ -29,3 +29,14 @@ New files or symbolic links will overwrite the following files/directories. Back
 
 # Misc
 `idleToes.terminal`: a color profile for macOS terminal.
+
+### Remove conda `(base)` in `$PS1` prompt (awkwardly)
+But keep the extra prompt when in conda environments other than `base`
+```sh
+mkdir -p $CONDA_INSTALL_DIR/etc/conda/activate.d
+```
+Put a file (e.g., `remove_base_ps1.sh`) in this directory with the following line:
+```sh
+PS1="$(echo "$PS1" | sed 's/(base)//')"
+```
+Source: [How to remove (base) from terminal prompt after updating conda](https://stackoverflow.com/a/55172508).

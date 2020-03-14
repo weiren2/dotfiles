@@ -114,3 +114,7 @@ if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
   alias vi="nvim"
   alias vimdiff="nvim -d"
 fi
+
+if [[ -f $HOME/.zshrc.local ]]; then
+  source $HOME/.zshrc.local
+fi
