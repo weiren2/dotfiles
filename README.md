@@ -28,4 +28,4 @@ New files or symbolic links will overwrite the following files/directories. Back
 [3]: https://github.com/Shougo/dein.vim
 
 # Misc
-`idleToes.terminal`: a color profile for used in macOS terminal.
+`idleToes.terminal`: a color profile for macOS terminal.
