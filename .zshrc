@@ -109,7 +109,7 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 #Alias for nvim if it exists
-if ! nvim_loc="$(type -p nvim)" || [[ -z $nvim_loc ]]; then
+if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
   alias vim="nvim"
   alias vi="nvim"
   alias vimdiff="nvim -d"

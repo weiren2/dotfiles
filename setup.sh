@@ -1,20 +1,58 @@
-# vimrc (also for neovim)
-wget https://gist.githubusercontent.com/weiren2/de9099a15a219b1909ac98f9469bd5d2/raw/3c46a336f9482f30fc96f5bc4c53852d59fe2519/.vimrc -O ~/.vimrc
-mkdir -p ~/.config/nvim
-ln -s ~/.vimrc ~/.config/nvim/init.vim
+#!/usr/bin/env bash
 
-# oh-my-zsh
-(export RUNZSH=no; sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
+CURR_DIR=$(pwd -P)
+NVIM_EXISTS=no
 
-# Customize zsh / oh-my-zsh config 
-wget "https://gist.githubusercontent.com/weiren2/de9099a15a219b1909ac98f9469bd5d2/raw/3c46a336f9482f30fc96f5bc4c53852d59fe2519/.zshrc" -O .zshrc
+# Check if nvim exists
+if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
+	NVIM_EXISTS=yes
+fi
 
-# Oh My Tmux config
-cd ~
-git clone https://github.com/gpakosz/.tmux.git || true
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
+# Soft link .vimrc for VIM
+ln -sfn $CURR_DIR/.vimrc $HOME/.vimrc
+echo "Vim config $HOME/.vimrc linked to $CURR_DIR/.vimrc."
 
+echo
 # Install dein (Vim package manager)
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh ~/.cache/dein
+if [[ ! -d "$HOME/.cache/dein" ]]; then
+	curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+	sh ./installer.sh ~/.cache/dein
+else
+  echo "dein already installed!"
+fi
+echo "dein installed to $HOME/.cache/dein."
+
+# Soft link init.vim for NEOVIM if it exists
+if [[ $NVIM_EXISTS = yes ]]; then
+	# Check for neovim config file
+	if [[ ! -d "$HOME/.config/nvim" ]]; then
+		mkdir -p $HOME/.config/nvim
+	fi
+	ln -sfn $CURR_DIR/.vimrc $HOME/.config/nvim/init.vim
+	echo "Neovim config $HOME/.config/nvim/init.vim linked to $CURR_DIR/.vimrc."
+else
+	echo "Neovim does not exist! Skipping..."
+fi
+
+echo
+# Install oh-my-zsh for zsh
+if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+	(export RUNZSH=no; sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
+else
+	echo "Oh-my-zsh already installed!"
+fi
+# Use customized zsh / oh-my-zsh config
+ln -sfn $CURR_DIR/.zshrc $HOME/.zshrc
+
+
+echo
+# Oh My Tmux config
+if [[ ! -d "$HOME/.tmux" ]]; then
+	cd ~
+	git clone https://github.com/gpakosz/.tmux.git || true
+	ln -s -f .tmux/.tmux.conf
+	cp .tmux/.tmux.conf.local .
+  echo "Oh-my-tmux configuration installed in $HOME/.tmux!"
+else
+	echo "Oh-my-tmux already installed in $HOME/.tmux!"
+fi
