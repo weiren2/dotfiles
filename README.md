@@ -23,14 +23,12 @@ New files or symbolic links will overwrite the following files/directories. Back
 - `$HOME/.tmux` will be used for installing [oh-my-tmux][2]
 - `$HOME/.oh-my-zsh` will be used for installing [oh-my-zsh][1]
 
-[1]: https://github.com/ohmyzsh/ohmyzsh/
-[2]: https://github.com/gpakosz/.tmux
-[3]: https://github.com/Shougo/dein.vim
-
 # Misc
+Some other files or notes worth mentioning (or not...).
+## Other files
 `idleToes.terminal`: a color profile for macOS terminal.
 
-### Remove conda `(base)` in `$PS1` prompt (awkwardly)
+## Remove conda `(base)` in `$PS1` prompt (awkwardly)
 But keep the extra prompt when in conda environments other than `base`
 ```sh
 mkdir -p $CONDA_INSTALL_DIR/etc/conda/activate.d
@@ -39,4 +37,10 @@ Put a file (e.g., `remove_base_ps1.sh`) in this directory with the following lin
 ```sh
 PS1="$(echo "$PS1" | sed 's/(base)//')"
 ```
-Source: [How to remove (base) from terminal prompt after updating conda](https://stackoverflow.com/a/55172508).
+Source: [How to remove (base) from terminal prompt after updating conda][4].
+
+
+[1]: https://github.com/ohmyzsh/ohmyzsh/
+[2]: https://github.com/gpakosz/.tmux
+[3]: https://github.com/Shougo/dein.vim
+[4]: https://stackoverflow.com/a/55172508
