@@ -101,6 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # Bind keys for zsh history substring search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=default,fg=magenta,bold"
 
 # use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char
@@ -115,6 +116,7 @@ if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
   alias vimdiff="nvim -d"
 fi
 
+# .zshrc.local contains machine-specific configurations
 if [[ -f $HOME/.zshrc.local ]]; then
   source $HOME/.zshrc.local
 fi
