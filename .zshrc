@@ -68,7 +68,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history alias-finder cp rsync safe-paste sudo history-substring-search zsh-navigation-tools dirpersist)
+plugins=(git history alias-finder cp rsync safe-paste sudo history-substring-search dirpersist)
 
 source $ZSH/oh-my-zsh.sh
 
