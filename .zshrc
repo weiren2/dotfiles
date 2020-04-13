@@ -109,6 +109,12 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
+
+# .zshrc.local contains machine-specific configurations
+if [[ -f $HOME/.zshrc.local ]]; then
+  source $HOME/.zshrc.local
+fi
+
 #Alias for nvim if it exists
 if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
   alias vim="nvim"
@@ -116,7 +122,3 @@ if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
   alias vimdiff="nvim -d"
 fi
 
-# .zshrc.local contains machine-specific configurations
-if [[ -f $HOME/.zshrc.local ]]; then
-  source $HOME/.zshrc.local
-fi
