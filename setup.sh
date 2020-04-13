@@ -41,11 +41,12 @@ if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
 else
 	echo "Oh-my-zsh already installed!"
 fi
+
+# Install zsh-navigation-tools manaully
+git clone https://github.com/psprint/zsh-navigation-tools.git && echo "source $CURR_DIR/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh" >> $HOME/.zshrc.local
+
 # Use customized zsh / oh-my-zsh config
 ln -sfn $CURR_DIR/.zshrc $HOME/.zshrc
-# Install zsh-navigation-tools manaully
-git clone https://github.com/psprint/zsh-navigation-tools.git
-echo "source $CURR_DIR/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh" >> $HOME/.zshrc.local
 
 
 echo
