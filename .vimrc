@@ -22,7 +22,6 @@ if dein#load_state('~/.cache/dein')
  call dein#add('vim-airline/vim-airline-themes')
  call dein#add('flazz/vim-colorschemes')
  call dein#add('qpkorr/vim-bufkill')
- "call dein#add('vim-syntastic/syntastic')
  call dein#add('nathanaelkane/vim-indent-guides')
  " extra cpp syntax highlighting
  call dein#add('octol/vim-cpp-enhanced-highlight')
@@ -130,15 +129,6 @@ nnoremap <silent><expr> <f9> ':set wrap! go'.'-+'[&wrap]."=b\r"
 
 set pastetoggle=<F2>
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
 let g:deoplete#enable_at_startup=1
 
 " Toggle tagbar using F3 key
@@ -150,11 +140,6 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#523D1F ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#6F532A ctermbg=4
 
- "" Toggle Syntastic on/off
- silent! nnoremap  <F7> :SyntasticToggleMode<CR>
- " manually run syntax check
- nnoremap <F5> :SyntasticCheck<CR> :lopen<CR>
- nnoremap <F6> :lclose<CR>
 
  let g:airline#extensions#tabline#enabled = 1
  let g:airline_theme='simple'
@@ -178,3 +163,10 @@ let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_posix_standard = 1
+
+set swapfile
+let swap_dir = expand(vimDir . '/swapfiles')
+if !isdirectory(swap_dir)
+	call system('mkdir ' . swap_dir)
+endif
+let &dir = swap_dir
