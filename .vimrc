@@ -1,51 +1,49 @@
 if &compatible
- set nocompatible
+	set nocompatible
 endif
+
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('~/.cache/dein')
- call dein#begin('~/.cache/dein')
+	call dein#begin('~/.cache/dein')
 
- call dein#add('~/.cache/dein')
- call dein#add('Shougo/deoplete.nvim')
-
- call dein#add('tomasr/molokai')
- call dein#add('mbbill/undotree')
- call dein#add('scrooloose/nerdtree')
- call dein#add('scrooloose/nerdcommenter')
- call dein#add('ctrlpvim/ctrlp.vim')
- call dein#add('majutsushi/tagbar')
- call dein#add('spf13/vim-autoclose')
- call dein#add('easymotion/vim-easymotion')
- call dein#add('vim-airline/vim-airline')
- call dein#add('vim-airline/vim-airline-themes')
- call dein#add('flazz/vim-colorschemes')
- call dein#add('qpkorr/vim-bufkill')
- call dein#add('nathanaelkane/vim-indent-guides')
- " extra cpp syntax highlighting
- call dein#add('octol/vim-cpp-enhanced-highlight')
- call dein#add('RRethy/vim-illuminate')
- if !has('nvim')
-   call dein#add('roxma/nvim-yarp')
-   call dein#add('roxma/vim-hug-neovim-rpc')
- endif
+		call dein#add('~/.cache/dein')
+		call dein#add('Shougo/deoplete.nvim')
+		call dein#add('tomasr/molokai')
+		call dein#add('mbbill/undotree')
+		call dein#add('scrooloose/nerdtree')
+		call dein#add('scrooloose/nerdcommenter')
+		call dein#add('ctrlpvim/ctrlp.vim')
+		call dein#add('majutsushi/tagbar')
+		call dein#add('spf13/vim-autoclose')
+		call dein#add('easymotion/vim-easymotion')
+		call dein#add('vim-airline/vim-airline')
+		call dein#add('vim-airline/vim-airline-themes')
+		call dein#add('flazz/vim-colorschemes')
+		call dein#add('qpkorr/vim-bufkill')
+		call dein#add('nathanaelkane/vim-indent-guides')
+		" extra cpp syntax highlighting
+		call dein#add('octol/vim-cpp-enhanced-highlight')
+		call dein#add('RRethy/vim-illuminate')
+		if !has('nvim')
+			call dein#add('roxma/nvim-yarp')
+			call dein#add('roxma/vim-hug-neovim-rpc')
+		endif
  
- call dein#end()
- call dein#save_state()
+	call dein#end()
+	call dein#save_state()
 endif
 
-filetype plugin indent on
-syntax enable
 if has('gui_running')
-  set background=dark
-  colorscheme molokai
+	set background=dark
+	colorscheme molokai
 else                 
-  set t_Co=256       
-  let g:rehash256 = 1           " better colors with molokai in terminal
-  colorscheme molokai                                                   
-"  let g:zenburn_high_Contrast=1 " for high-contrast mode with zenburn  
-"  colorscheme zenburn                                                  
+	set t_Co=256       
+	let g:rehash256 = 1           " better colors with molokai in terminal
+	colorscheme molokai                                                   
+	"  let g:zenburn_high_Contrast=1 " for high-contrast mode with zenburn  
+	"  colorscheme zenburn                                                  
 endif                                                                   
 
 map <C-n> :NERDTreeToggle<CR>
@@ -68,12 +66,12 @@ let &runtimepath.=','.vimDir
 
 " Keep undo history across sessions by storing it in a file
 if has('persistent_undo')                                  
-    let myUndoDir = expand(vimDir . '/undodir')            
-    " Create dirs                                          
-    call system('mkdir ' . vimDir)                         
-    call system('mkdir ' . myUndoDir)                      
-    let &undodir = myUndoDir                               
-    set undofile                                           
+	let myUndoDir = expand(vimDir . '/undodir')            
+	" Create dirs                                          
+	call system('mkdir ' . vimDir)                         
+	call system('mkdir ' . myUndoDir)                      
+	let &undodir = myUndoDir                               
+	set undofile                                           
 endif                                                      
 
 " enable highlight after search
@@ -89,7 +87,9 @@ set encoding=utf-8
 " custom font and font size
 " set gfn=DejaVu\ Sans\ Mono\ 12
 
+filetype plugin indent on
 " vim syntax support
+syntax enable
 syntax on           
 
 " Display unprintable characters f12 - switches
@@ -141,18 +141,17 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#523D1F ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#6F532A ctermbg=4
 
 
- let g:airline#extensions#tabline#enabled = 1
- let g:airline_theme='simple'
- let g:airline_powerline_fonts = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='simple'
+let g:airline_powerline_fonts = 0
 
 " Use Ctrl-L to clear search highlight
 nnoremap <silent> <C-L> : nohls<CR><C-L>
 
-" Uncomment the following to have Vim jump to the last position when                                                       
-" reopening a file
+" Uncomment the following to have Vim jump to the last position when reopening a file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g`\"" | endif
+	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+		\| exe "normal! g`\"" | endif
 endif
 
 set mouse=a
@@ -164,6 +163,7 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_posix_standard = 1
 
+" Enable vim swapfiles
 set swapfile
 let swap_dir = expand(vimDir . '/swapfiles')
 if !isdirectory(swap_dir)
