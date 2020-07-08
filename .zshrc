@@ -163,3 +163,6 @@ if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
 	alias vi="nvim"
 	alias vimdiff="nvim -d"
 fi
+
+# Persistent rehash
+zstyle ':completion:*' rehash true
