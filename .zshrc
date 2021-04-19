@@ -170,9 +170,9 @@ if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
 	alias vim="nvim"
 	alias vi="nvim"
 	alias vimdiff="nvim -d"
-	export EDITOR=nvim
-then
-	export EDITOR=vim
+	export EDITOR="nvim"
+else
+	export EDITOR="vim"
 fi
 export VISUAL="$EDITOR"
 
