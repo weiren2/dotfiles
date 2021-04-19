@@ -110,7 +110,20 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history alias-finder cp rsync safe-paste sudo history-substring-search dirpersist)
+plugins=(git
+		history
+		history-substring-search
+		alias-finder
+		cp
+		rsync
+		safe-paste
+		sudo
+		dirpersist
+		rust
+		rustup
+		zsh-navigation-tools
+		zsh_reload
+	)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -152,16 +165,20 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 
-# .zshrc.local contains machine-specific configurations
-if [[ -f $HOME/.zshrc.local ]]; then
-  source $HOME/.zshrc.local
-fi
-
 #Alias for nvim if it exists
 if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
 	alias vim="nvim"
 	alias vi="nvim"
 	alias vimdiff="nvim -d"
+	export EDITOR=nvim
+then
+	export EDITOR=vim
+fi
+export VISUAL="$EDITOR"
+
+# .zshrc.local contains machine-specific configurations
+if [[ -f $HOME/.zshrc.local ]]; then
+  source $HOME/.zshrc.local
 fi
 
 # Persistent rehash
