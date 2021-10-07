@@ -119,7 +119,6 @@ plugins=(git
 		rust
 		rustup
 		zsh-navigation-tools
-		zsh_reload
 	)
 
 source $ZSH/oh-my-zsh.sh
