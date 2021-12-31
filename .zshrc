@@ -116,8 +116,6 @@ plugins=(git
 		safe-paste
 		sudo
 		dirpersist
-		rust
-		rustup
 		zsh-navigation-tools
 	)
 
