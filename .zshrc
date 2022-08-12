@@ -118,7 +118,6 @@ plugins=(git
 		dirpersist
 		zsh-navigation-tools
 		rust
-		zsh-autosuggestions
 		zsh-syntax-highlighting
 	)
 

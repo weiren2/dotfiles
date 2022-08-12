@@ -60,10 +60,6 @@ ZSH_SYNTAX_HIGHLIGHT_DIR="$OMZ_CUSTOM_PLUGIN_DIR/zsh-syntax-highlighting"
 ZSH_SYNTAX_HIGHLIGHT_GIT_REPO="https://github.com/zsh-users/zsh-syntax-highlighting.git"
 download_or_update_repo $ZSH_SYNTAX_HIGHLIGHT_DIR $ZSH_SYNTAX_HIGHLIGHT_GIT_REPO
 
-ZSH_AUTOSUGGEST_DIR="$OMZ_CUSTOM_PLUGIN_DIR/zsh-autosuggestions"
-ZSH_AUTOSUGGEST_GIT_REPO="https://github.com/zsh-users/zsh-autosuggestions"
-download_or_update_repo $ZSH_AUTOSUGGEST_DIR $ZSH_AUTOSUGGEST_GIT_REPO
-
 # Use customized zsh / oh-my-zsh config
 ln -sfn $CURR_DIR/.zshrc $HOME/.zshrc
 
