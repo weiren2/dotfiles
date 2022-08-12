@@ -121,6 +121,9 @@ plugins=(git
 		rust
 	)
 
+# Include custom plugins
+plugins=( [plugins...] zsh-syntax-highlighting)
+
 source $ZSH/oh-my-zsh.sh
 compinit
 

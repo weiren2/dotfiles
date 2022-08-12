@@ -43,6 +43,14 @@ else
 	echo "Oh-my-zsh already installed!"
 fi
 
+OMZ_CUSTOM_PLUGIN_DIR="$CURR_DIR/omz-custom/plugins"
+ZSH_SYNTAX_HIGHLIGHT_DIR="$OMZ_CUSTOM_PLUGIN_DIR/zsh-syntax-highlighting"
+if [[ ! -d $ZSH_SYNTAX_HIGHLIGHT_DIR ]]; then
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OMZ_CUSTOM_PLUGIN_DIR
+else
+	git -C $ZSH_SYNTAX_HIGHLIGHT_DIR pull
+fi
+
 # Use customized zsh / oh-my-zsh config
 ln -sfn $CURR_DIR/.zshrc $HOME/.zshrc
 
