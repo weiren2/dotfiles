@@ -117,12 +117,10 @@ plugins=(git
 		sudo
 		dirpersist
 		zsh-navigation-tools
-		zsh-interactive-cd
 		rust
+		zsh-autosuggestions
+		zsh-syntax-highlighting
 	)
-
-# Include custom plugins
-plugins=( [plugins...] zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 compinit

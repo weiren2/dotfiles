@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 CURR_DIR=$(pwd -P)
 
+###### Utility Functions ######
+function download_or_update_repo {
+	local destination_dir=$1
+	local git_repo_url=$2
+	if [[ ! -d $destination_dir ]]; then
+		git clone $git_repo_url $destination_dir
+	else
+		git -C $destination_dir pull
+	fi
+}
+
 ###### Neovim & Vim ######
 NVIM_EXISTS=no
 # Check if nvim exists
@@ -44,12 +55,14 @@ else
 fi
 
 OMZ_CUSTOM_PLUGIN_DIR="$CURR_DIR/omz-custom/plugins"
+
 ZSH_SYNTAX_HIGHLIGHT_DIR="$OMZ_CUSTOM_PLUGIN_DIR/zsh-syntax-highlighting"
-if [[ ! -d $ZSH_SYNTAX_HIGHLIGHT_DIR ]]; then
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OMZ_CUSTOM_PLUGIN_DIR
-else
-	git -C $ZSH_SYNTAX_HIGHLIGHT_DIR pull
-fi
+ZSH_SYNTAX_HIGHLIGHT_GIT_REPO="https://github.com/zsh-users/zsh-syntax-highlighting.git"
+download_or_update_repo $ZSH_SYNTAX_HIGHLIGHT_DIR $ZSH_SYNTAX_HIGHLIGHT_GIT_REPO
+
+ZSH_AUTOSUGGEST_DIR="$OMZ_CUSTOM_PLUGIN_DIR/zsh-autosuggestions"
+ZSH_AUTOSUGGEST_GIT_REPO="https://github.com/zsh-users/zsh-autosuggestions"
+download_or_update_repo $ZSH_AUTOSUGGEST_DIR $ZSH_AUTOSUGGEST_GIT_REPO
 
 # Use customized zsh / oh-my-zsh config
 ln -sfn $CURR_DIR/.zshrc $HOME/.zshrc
