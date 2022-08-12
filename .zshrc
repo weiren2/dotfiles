@@ -100,7 +100,7 @@ ZSH_THEME="ys"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/dotfiles/omz-custom
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -117,6 +117,8 @@ plugins=(git
 		sudo
 		dirpersist
 		zsh-navigation-tools
+		zsh-interactive-cd
+		rust
 	)
 
 source $ZSH/oh-my-zsh.sh
