@@ -1,7 +1,27 @@
 #!/usr/bin/env bash
+set -e
 CURR_DIR=$(pwd -P)
 
 ###### Utility Functions ######
+function program_path {
+	local _program=$1
+	if type -p $_program &> /dev/null; then
+		echo $(type -p $_program)
+	fi
+}
+
+function find_program {
+	local _program=$1
+	printf "Trying to find $_program. "
+	local _path=$(program_path $_program)
+	if [ -z "$_path" ]; then
+		printf "Not found! Please install $_program first.\n"
+		exit 1
+	else
+		printf "Found at path: $_path\n"
+	fi
+}
+
 function download_or_update_repo {
 	local destination_dir=$1
 	local git_repo_url=$2
@@ -12,38 +32,13 @@ function download_or_update_repo {
 	fi
 }
 
-###### Neovim & Vim ######
-NVIM_EXISTS=no
-# Check if nvim exists
-if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
-	NVIM_EXISTS=yes
-fi
-
-# Soft link .vimrc for VIM
-ln -sfn $CURR_DIR/.vimrc $HOME/.vimrc
-echo "Vim config $HOME/.vimrc linked to $CURR_DIR/.vimrc."
-
-echo
-# Install dein (Vim package manager)
-if [[ ! -d "$HOME/.cache/dein" ]]; then
-	curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-	sh ./installer.sh ~/.cache/dein
-else
-  echo "dein already installed!"
-fi
-echo "dein installed to $HOME/.cache/dein."
-
-# Soft link init.vim for NEOVIM if it exists
-if [[ $NVIM_EXISTS = yes ]]; then
-	# Check for neovim config file
-	if [[ ! -d "$HOME/.config/nvim" ]]; then
-		mkdir -p $HOME/.config/nvim
-	fi
-	ln -sfn $CURR_DIR/.vimrc $HOME/.config/nvim/init.vim
-	echo "Neovim config $HOME/.config/nvim/init.vim linked to $CURR_DIR/.vimrc."
-else
-	echo "Neovim does not exist! Skipping..."
-fi
+###### Prerequisites ######
+find_program git
+find_program curl
+find_program zsh
+find_program starship
+find_program tmux
+find_program nvim
 
 ###### Oh My Zsh & Config ######
 echo
@@ -54,14 +49,14 @@ else
 	echo "Oh-my-zsh already installed!"
 fi
 
-OMZ_CUSTOM_PLUGIN_DIR="$CURR_DIR/omz-custom/plugins"
+OMZ_CUSTOM_PLUGIN_DIR="$CURR_DIR/zsh/omz-custom/plugins"
 
 ZSH_SYNTAX_HIGHLIGHT_DIR="$OMZ_CUSTOM_PLUGIN_DIR/zsh-syntax-highlighting"
 ZSH_SYNTAX_HIGHLIGHT_GIT_REPO="https://github.com/zsh-users/zsh-syntax-highlighting.git"
 download_or_update_repo $ZSH_SYNTAX_HIGHLIGHT_DIR $ZSH_SYNTAX_HIGHLIGHT_GIT_REPO
 
 # Use customized zsh / oh-my-zsh config
-ln -sfn $CURR_DIR/.zshrc $HOME/.zshrc
+ln -sfn $CURR_DIR/zsh/.zshrc $HOME/.zshrc
 
 
 ###### Oh My Tmux config ######
@@ -84,3 +79,13 @@ if [[ -f $TMUX_OMT_LOCAL_CONF ]]; then
 	mv "$TMUX_OMT_LOCAL_CONF" "$TMUX_OMT_LOCAL_CONF.backup"
 fi
 cp $TMUX_OMT_DIR/.tmux.conf.local $TMUX_OMT_LOCAL_CONF
+
+# Neovim
+# Check for neovim config file
+if [[ ! -d "$HOME/.config/nvim" ]]; then
+	mkdir -p $HOME/.config/nvim
+fi
+ln -sfn $CURR_DIR/.vimrc $HOME/.config/nvim/init.vim
+echo "Neovim config $HOME/.config/nvim/init.vim linked to $CURR_DIR/.vimrc."
+
+echo "(LSP-related) Recommended to install: pyright, rust-analyzer, clangd, tsserver/typescript-language-server."
