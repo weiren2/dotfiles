@@ -44,7 +44,7 @@ find_program nvim
 echo
 # Install oh-my-zsh for zsh
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-	(export RUNZSH=no; sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
+	(export RUNZSH=no; ZSH= sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)")
 else
 	echo "Oh-my-zsh already installed!"
 fi
@@ -85,7 +85,9 @@ cp $TMUX_OMT_DIR/.tmux.conf.local $TMUX_OMT_LOCAL_CONF
 if [[ ! -d "$HOME/.config/nvim" ]]; then
 	mkdir -p $HOME/.config/nvim
 fi
-ln -sfn $CURR_DIR/.vimrc $HOME/.config/nvim/init.vim
-echo "Neovim config $HOME/.config/nvim/init.vim linked to $CURR_DIR/.vimrc."
+INIT_FILE=$CURR_DIR/neovim/init.vim
+NVIM_INIT_PATH=$HOME/.config/nvim/init.vim
+ln -sfn $INIT_FILE $NVIM_INIT_PATH
+echo "Neovim config $INIT_FILE linked to $NVIM_INIT_PATH."
 
 echo "(LSP-related) Recommended to install: pyright, rust-analyzer, clangd, tsserver/typescript-language-server."
