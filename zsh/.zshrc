@@ -155,14 +155,14 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="bg=default,fg=magenta,bold"
 
-# use the vi navigation keys in menu completion
+# Use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 
-#Alias for nvim if it exists
+# Alias for nvim if it exists
 if nvim_loc="$(type -p nvim)" && [[ -n $nvim_loc ]]; then
 	alias vim="nvim"
 	alias vi="nvim"
@@ -174,6 +174,13 @@ fi
 export VISUAL="$EDITOR"
 
 eval "$(starship init zsh)"
+
+# Initialize pyenv and pyenv-virtualenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # .zshrc.local contains machine-specific configurations
 if [[ -f $HOME/.zshrc.local ]]; then
