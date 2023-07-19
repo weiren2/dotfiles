@@ -39,6 +39,8 @@ find_program zsh
 find_program starship
 find_program tmux
 find_program nvim
+find_program pyenv
+find_program pyenv-virtualenv
 
 ###### Oh My Zsh & Config ######
 echo
@@ -66,7 +68,7 @@ if [[ ! -d $TMUX_OMT_DIR ]]; then
 	cd ~
 	git clone https://github.com/gpakosz/.tmux.git || true
 	ln -s -f .tmux/.tmux.conf
-  echo "Oh-my-tmux configuration installed in $TMUX_OMT_DIR!"
+	echo "Oh-my-tmux configuration installed in $TMUX_OMT_DIR!"
 else
 	echo "Oh-my-tmux already installed in $TMUX_OMT_DIR! Updating it now."
 	git -C $TMUX_OMT_DIR pull
@@ -82,12 +84,13 @@ cp $TMUX_OMT_DIR/.tmux.conf.local $TMUX_OMT_LOCAL_CONF
 
 # Neovim
 # Check for neovim config file
-if [[ ! -d "$HOME/.config/nvim" ]]; then
-	mkdir -p $HOME/.config/nvim
+NVIM_CONFIG_PATH=$HOME/.config/nvim
+if [[ -d "$NVIM_CONFIG_PATH" ]]; then
+	echo "Neovim config already exists! Abort."
+	exit 1
+else
+	ln -sfn $CURR_DIR/neovim $NVIM_CONFIG_PATH
+	echo "Neovim config linked to $NVIM_CONFIG_PATH."
 fi
-INIT_FILE=$CURR_DIR/neovim/init.vim
-NVIM_INIT_PATH=$HOME/.config/nvim/init.vim
-ln -sfn $INIT_FILE $NVIM_INIT_PATH
-echo "Neovim config $INIT_FILE linked to $NVIM_INIT_PATH."
 
 echo "(LSP-related) Recommended to install: pyright, rust-analyzer, clangd, tsserver/typescript-language-server."
