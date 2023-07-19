@@ -121,6 +121,12 @@ plugins=(git
 		zsh-syntax-highlighting
 	)
 
+if type -p brew &> /dev/null; then
+	brew_functions="$(brew --prefix)/share/zsh/site-functions"
+	if [ "${FPATH#*"$brew_functions"}" = "$FPATH" ]; then
+		FPATH="$brew_functions:$FPATH"
+	fi
+fi
 source $ZSH/oh-my-zsh.sh
 compinit
 
