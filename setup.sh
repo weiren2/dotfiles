@@ -84,11 +84,15 @@ cp $TMUX_OMT_DIR/.tmux.conf.local $TMUX_OMT_LOCAL_CONF
 
 # Neovim
 # Check for neovim config file
-NVIM_CONFIG_PATH=$HOME/.config/nvim
+CONFIG=$HOME/.config
+NVIM_CONFIG_PATH=$CONFIG/nvim
 if [[ -d "$NVIM_CONFIG_PATH" ]]; then
 	echo "Neovim config already exists! Abort."
 	exit 1
 else
+	if [[ ! -d "$CONFIG" ]]; then
+		mkdir -p "$CONFIG"
+	fi
 	ln -sfn $CURR_DIR/neovim $NVIM_CONFIG_PATH
 	echo "Neovim config linked to $NVIM_CONFIG_PATH."
 fi
