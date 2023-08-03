@@ -39,7 +39,7 @@ find_program zsh
 find_program starship
 find_program tmux
 find_program nvim
-find_program pyenv
+find_program npm # for LazyVim
 
 ###### Make sure `.config` directory exists ######
 CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}
@@ -78,7 +78,6 @@ cp $TMUX_OMT_DIR/.tmux.conf.local $TMUX_OMT_LOCAL_CONF
 
 # Neovim
 # Check for neovim config file
-
 NVIM_CONFIG_PATH=$CONFIG/nvim
 if [[ -d "$NVIM_CONFIG_PATH" ]]; then
 	echo "Neovim config already exists! Abort."
