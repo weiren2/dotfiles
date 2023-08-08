@@ -84,10 +84,10 @@ cp "$TMUX_OMT_DIR/.tmux.conf.local" "$TMUX_OMT_LOCAL_CONF"
 # Neovim
 # Check for neovim config file
 NVIM_CONFIG_PATH="$CONFIG/nvim"
-if [[ -d "$NVIM_CONFIG_PATH" ]]; then
-	echo "Neovim config already exists! Abort."
-	echo "Did not overwrite any Neovim config."
-	exit 0
+if [[ -e "$NVIM_CONFIG_PATH" && (`readlink -f "$NVIM_CONFIG_PATH"` != "$CURR_DIR/neovim") ]]; then
+	echo "Neovim config already exists and it's not linked to neovim config in this repo! Abort."
+	echo "(Did not overwrite any Neovim config.)"
+	exit 1
 else
 	if [[ ! -d "$CONFIG" ]]; then
 		mkdir -p "$CONFIG"
