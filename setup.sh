@@ -78,7 +78,7 @@ TMUX_OMT_LOCAL_CONF="$TMUX_OMT_DIR/tmux.conf.local"
 if [[ -f "$TMUX_OMT_LOCAL_CONF" ]]; then
 	mv "$TMUX_OMT_LOCAL_CONF" "$TMUX_OMT_LOCAL_CONF.backup"
 fi
-cp "$TMUX_OMT_DIR/.tmux.conf.local" "$TMUX_OMT_LOCAL_CONF"
+echo 'set-option -ga terminal-overrides ",xterm-256color:Tc"' | cat - "$TMUX_OMT_DIR/.tmux.conf.local" > "$TMUX_OMT_LOCAL_CONF"
 
 
 # Neovim
