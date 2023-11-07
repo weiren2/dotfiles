@@ -10,37 +10,27 @@ cd dotfiles
 ```
 
 Based on other scripts/tools/plugins:
-- [Oh My Zsh][1]
+- [Antidote][1] (zsh plugin manager)
 - [Oh My Tmux!][2]
-- [dein.vim][3]
-- Check .vimrc for vim plugins used
+- [LazyVim][3] (neovim)
 
 # Files changed
 New files or symbolic links will overwrite the following files/directories. Backup if needed.
-- `$HOME/.vimrc`
-- `$HOME/.config/nvim/init.vim` if neovim is installed
-- `$HOME/.cache/dein` will be used for installing [dein.vim][3]
-- `$HOME/.tmux` will be used for installing [oh-my-tmux][2]
-- `$HOME/.oh-my-zsh` will be used for installing [oh-my-zsh][1]
+- `$HOME/.config/nvim` if neovim is installed.
+- `$HOME/.config/tmux` (or `XDG_CONFIG_HOME/tmux`) will be used for installing [oh-my-tmux][2]
+- `$ZSH` will be set to `$HOME/.zsh`, which is also a symbolic link to the [`zsh`](zsh) directory here.
+- [Antidote][1] will be installed to `$ZSH/cache`.
+
+# Other files
+- `config/kitty`: [kitty terminal](https://sw.kovidgoyal.net/kitty/) configuration with [Catppuccin](https://github.com/catppuccin).
 
 # Misc
-Some other files or notes worth mentioning (or not...).
-## Other files
-`idleToes.terminal`: a color profile for macOS terminal.
+Some other files or notes worth mentioning (or not...). 
 
-## Remove conda `(base)` in `$PS1` prompt (awkwardly)
-But keep the extra prompt when in conda environments other than `base`
-```sh
-mkdir -p $CONDA_INSTALL_DIR/etc/conda/activate.d
-```
-Put a file (e.g., `remove_base_ps1.sh`) in this directory with the following line:
-```sh
-PS1="$(echo "$PS1" | sed 's/(base)//')"
-```
-Source: [How to remove (base) from terminal prompt after updating conda][4].
+## Pyenv
+ - Check `pyenv`'s [installation guide](https://github.com/pyenv/pyenv#installation).
+ - Also [install python build dependencies](https://github.com/pyenv/pyenv/wiki#suggested-build-environment).
 
-
-[1]: https://github.com/ohmyzsh/ohmyzsh/
+[1]: https://github.com/mattmc3/antidote
 [2]: https://github.com/gpakosz/.tmux
-[3]: https://github.com/Shougo/dein.vim
-[4]: https://stackoverflow.com/a/55172508
+[3]: https://github.com/LazyVim/LazyVim
