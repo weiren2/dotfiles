@@ -7,3 +7,6 @@ local opt = vim.opt
 opt.ignorecase = false -- Case sensitive
 opt.autowrite = false -- Auto write
 opt.relativenumber = false -- Relative line numbers
+
+-- LazyVim auto format
+vim.g.autoformat = false
