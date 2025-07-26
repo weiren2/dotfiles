@@ -32,3 +32,4 @@ zstyle ':completion:*' rehash true
 
 # Starship prompt
 eval "$(starship init zsh)"
+source <(fzf --zsh)

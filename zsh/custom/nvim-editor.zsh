@@ -8,3 +8,4 @@ else
 	export EDITOR="vim"
 fi
 export VISUAL="$EDITOR"
+export SYSTEMD_EDITOR="$VISUAL"
