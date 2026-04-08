@@ -37,6 +37,7 @@ find_program git
 find_program curl
 find_program readlink
 find_program zsh
+find_program fzf
 find_program starship
 find_program tmux
 find_program nvim
@@ -52,7 +53,7 @@ echo
 if [[ -e "$HOME/.zsh" && (`readlink -f "$HOME/.zsh"` != "$CURR_DIR/zsh") ]]; then
 	echo "Trying to symlink \`$HOME/.zsh\` but it already exists (and does not link to zsh in this repo). Abort!"
 	exit 1
-fi 
+fi
 echo "Zsh configuration linked to directory \`$HOME/.zsh\`"
 ln -sfn "$CURR_DIR/zsh" "$HOME/.zsh"
 
@@ -67,7 +68,7 @@ TMUX_OMT_GIT="https://github.com/gpakosz/.tmux.git"
 
 if [[ ! -d "$TMUX_OMT_DIR" ]]; then
 	echo "Oh-my-tmux configuration will be installed in $TMUX_OMT_DIR!"
-else 
+else
 	echo "Oh-my-tmux already installed in $TMUX_OMT_DIR! Updating it now."
 fi
 # Oh My Tmux provides some sane defaults. Update local config as well.
