@@ -1,0 +1,11 @@
+background-blur = true
+background-opacity = 0.900000
+cursor-style = bar
+font-family = CaskaydiaCove Nerd Font Mono
+font-size = 14
+shell-integration-features = sudo,ssh-terminfo,ssh-env
+theme = Catppuccin Mocha
+window-height = 48
+window-padding-x = 4
+window-padding-y = 4
+window-width = 120
